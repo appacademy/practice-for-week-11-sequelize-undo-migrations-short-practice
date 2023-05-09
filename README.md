@@ -52,9 +52,6 @@ npx dotenv sequelize db:migrate:undo
 Verify that the `down` function specified in the last migration file has been 
 executed by making sure that the table no longer exists in your database.
 
-> RESEARCH: It is also possible to undo migrations going back to a specific 
-> migration file.
-
 
 ## Step 3: Redo the migrations that have been undone
 
@@ -63,9 +60,6 @@ not been run will be executed.
 
 Verify that the `up` functions in each of the migrations have been executed by 
 making sure that each of the tables now exist again within your database.
-
-> RESEARCH: It is also possible to migrate starting from or going up to specific 
-> migration files.
 
 
 ## Step 4: Undo all migrations
@@ -80,7 +74,31 @@ Verify that the `down` functions in each of the undone migrations have been
 executed by making sure that each of these tables no longer exists in your 
 database.
 
+## Step 5: Research task - Undo migrations to a specific file
+
+What if you wanted to undo migrations to a specific migration file instead of
+undoing just the last migration or all migrations?
+
+Research how to undo up to the `20211008225902-create-cats.js` migration in one
+command using the Sequelize docs. **IMPORTANT NOTE**: You will need to refer to
+the `dotenv-cli` docs on [how to add flags to an underlying dotenv-cli command].
+
+```diff
+    20211008201504-create-color.js
+    20211008225744-create-shapes.js
+-   20211008225902-create-cats.js
+-   20211008225940-create-users.js
+-   20211008225957-create-games.js
+```
+After you run the command, the `create-games`, `create-users`, and `create-cats`
+migrations should be undone, and the `create-color` and `create-shapes` should be the
+only migrations still committed.
+Make sure all the migrations have been committed before running the command to
+make sure the command is working.
+
 
 ## Congratulations!
 
 You are now able to undo and redo migrations with **Sequelize**.
+
+[how to add flags to an underlying dotenv-cli command]: https://www.npmjs.com/package/dotenv-cli#flags-to-the-underlying-command
